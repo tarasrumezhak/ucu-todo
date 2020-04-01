@@ -19,17 +19,23 @@ class App extends Stepan.Component {
     const divContainer = Stepan.createElement('div', rootElement);
 
     // TodoListHead-----------------
+    this.todoListHead = new TodoListHead(divContainer);
     new TodoListHead(divContainer).render();
 
     // TodoListToggleAll-----------------
     const sectionMain = Stepan.createElement('section', divContainer, { class: 'main' });
-    new TodoListToggleAll(sectionMain).render();
+    this.todoListToggleAll =  new TodoListToggleAll(sectionMain);
+    this.todoListToggleAll.render();
+
 
     // TodoList-----------------
-    new TodoList(sectionMain).render(todos);
+    this.TodoList = new TodoList(sectionMain).render(todos);
+    this.TodoList.render(this.todos);
 
     // Footer-----------------
-    new Footer(divContainer).render(todos)
+    // new Footer(divContainer).render(todos)
+    this.Footer = new Footer(divContainer);
+    this.Footer.render(this.todos);
 
     return rootElement
   }
